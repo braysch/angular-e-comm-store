@@ -8,6 +8,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { CategoryService } from '../../../services/category';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
+import { Category } from '../../../types/category';
 
 @Component({
   selector: 'app-categories',
@@ -17,7 +18,7 @@ import { RouterLink } from '@angular/router';
 })
 export class Categories {
   displayedColumns: string[] = ['id', 'name', 'action'];
-  dataSource: MatTableDataSource<any>;
+  dataSource: MatTableDataSource<Category>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -29,6 +30,10 @@ export class Categories {
     }
 
   ngOnInit(){
+    this.getServerData();
+}
+
+private getServerData() {
     this.categoryService.getCategories().subscribe((result: any) => {
     console.log(result);
     this.dataSource.data = result;
@@ -48,4 +53,13 @@ export class Categories {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  delete(id: string) {
+    this.categoryService.deleteCategory(id).subscribe((result: any) => {
+      alert('Category deleted successfully');
+      this.dataSource.data = this.dataSource.data.filter((item: any) => item.id !== id);
+      this.getServerData();
+    });
+}
+
 }

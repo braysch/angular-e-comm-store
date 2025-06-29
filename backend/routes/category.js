@@ -5,6 +5,7 @@ const { addCategory, updateCategory, deleteCategory } = require('../handlers/cat
 
 router.post("", async (req, res) => {
     let model = req.body;
+    const category = new Category(model);
     let result = await addCategory(model);
     category.save();
     res.send(result);
@@ -20,6 +21,12 @@ router.put("/:id", async (req, res) => {
 router.get("", async (req, res) => {
     let categories = await Category.find();
     return res.send(categories.map(category => category.toObject()));
+});
+
+router.get("/:id", async (req, res) => {
+    let id = req.params['id'];
+    let result = await Category.findById(id);
+    res.send(result);
 });
 
 router.delete("/:id", async (req, res) => {
