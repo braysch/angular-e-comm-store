@@ -1,11 +1,18 @@
-const expores = require("express");
+const express = require("express");
 const mongoose = require("mongoose");
-const app = expores();
+const app = express();
 const port = 3000;
+const cors = require("cors");
+const categoryRouter = require("./routes/category");
+
+app.use(cors());
+app.use(express.json());
 
 app.get("/",(req, res) => {
     res.send("Server running");
 });
+
+app.use("/category", categoryRouter);
 
 async function connectDB() {
     mongoose.connect("mongodb://localhost:27017/ecommDB", {
