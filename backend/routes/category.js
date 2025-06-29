@@ -5,9 +5,7 @@ const { addCategory, updateCategory, deleteCategory } = require('../handlers/cat
 
 router.post("", async (req, res) => {
     let model = req.body;
-    const category = new Category(model);
     let result = await addCategory(model);
-    category.save();
     res.send(result);
 });
 
