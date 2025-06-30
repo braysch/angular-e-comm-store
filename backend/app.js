@@ -4,6 +4,7 @@ const app = express();
 const port = 3000;
 const cors = require("cors");
 const categoryRouter = require("./routes/category");
+const brandRouter = require("./routes/brand");
 
 app.use(cors());
 app.use(express.json());
@@ -13,6 +14,7 @@ app.get("/",(req, res) => {
 });
 
 app.use("/category", categoryRouter);
+app.use("/brand", brandRouter);
 
 async function connectDB() {
     mongoose.connect("mongodb://localhost:27017/ecommDB", {

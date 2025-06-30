@@ -4,7 +4,7 @@ async function addCategory(model) {
     let category = new Category({
         name: model.name,
     });
-    category.save();
+    await category.save();
     return category.toObject();
 }
 
