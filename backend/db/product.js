@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
-const Category = require('./category');
+const { Schema } = mongoose;
 const productSchema = new mongoose.Schema({
     name: String,
     description: String,
     shortDescription: String,
-    purchasePrice: Number,
+    price: Number,
+    discount: Number,
     sellingPrice: Number,
     images: [String],
     categoryId: [{ type: Schema.Types.ObjectId, ref: 'categories' }]

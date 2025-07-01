@@ -1,0 +1,14 @@
+<div class="px-40 mt-10 flex flex-col">
+    @if (isEdit) {<h1>Edit Product</h1>} @else {<h1>Add Product</h1>}
+    <form action="">
+        <div class="flex">
+            <div class="w-full flex justify-start items-center gap-x-8">
+                <mat-form-field class="w-full flex">
+                    <mat-label>Name</mat-label>
+                    <input matInput [(ngModel)]="name" name="name" placeholder="Product Name" required>
+                </mat-form-field>
+                <button mat-raised-button color="primary" (click)="isEdit ? update() : add()" disabled={{!name}}>{{ isEdit ? "Update" : "Add" }}</button>
+            </div>
+        </div>
+    </form>
+</div>
