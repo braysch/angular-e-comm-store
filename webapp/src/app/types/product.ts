@@ -8,4 +8,5 @@ export interface Product {
     sellingPrice?: number;
     images?: string[];
     categoryId?: string[];
+    brandId?: string[];
 }

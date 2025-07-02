@@ -1,13 +1,58 @@
 <div class="px-40 mt-10 flex flex-col">
     @if (isEdit) {<h1>Edit Product</h1>} @else {<h1>Add Product</h1>}
-    <form action="">
+    <form [formGroup]="productForm" class="w-full flex flex-col gap-y-4">
         <div class="flex">
-            <div class="w-full flex justify-start items-center gap-x-8">
+            <div class="w-full flex flex-col justify-start items-center gap-x-8">
+                
+                <mat-form-field class="w-full flex">
+                    <mat-label>Category</mat-label>
+                    <mat-select formControlName = "categoryId">
+                       @for (item of categories; track item) {
+                    <mat-option [value]="item._id">{{ item.name }}</mat-option>
+                       }
+                </mat-select></mat-form-field>
+
+                    <mat-form-field class="w-full flex">
+                    <mat-label>Brand</mat-label>
+                    <mat-select formControlName ="brandId">
+                       @for (item of brands; track item) {
+                    <mat-option [value]="item._id">{{ item.name }}</mat-option>
+                       }
+                </mat-select></mat-form-field>
+
                 <mat-form-field class="w-full flex">
                     <mat-label>Name</mat-label>
-                    <input matInput [(ngModel)]="name" name="name" placeholder="Product Name" required>
+                    <input matInput placeholder="Product Name" type="text" formControlName="name">
                 </mat-form-field>
-                <button mat-raised-button color="primary" (click)="isEdit ? update() : add()" disabled={{!name}}>{{ isEdit ? "Update" : "Add" }}</button>
+                <mat-form-field class="w-full flex">
+                    <mat-label>Short Description</mat-label>
+                    <input matInput placeholder="Product Short Description" type="text" formControlName="shortDescription">
+                </mat-form-field>
+                <mat-form-field class="w-full flex">
+                    <mat-label>Description</mat-label>
+                    <textarea matInput placeholder="Product Description" type="text" rows="5" formControlName="description"></textarea>
+                </mat-form-field>
+                <mat-form-field class="w-full flex">
+                    <mat-label>Price</mat-label>
+                    <input matInput placeholder="Product Price" type="number" formControlName="price">
+                </mat-form-field>
+                <mat-form-field class="w-full flex">
+                    <mat-label>Discount</mat-label>
+                    <input matInput placeholder="Product Discount" type="number" formControlName="discount">
+                </mat-form-field>
+                <div class="w-full flex flex-col" formArrayName="images">
+                    <div class="w-full flex justify-between items-center">
+                    <h4>Images</h4>
+                    <button mat-raised-button color="primary" (click)="addImage()">Add Image</button>
+                    <button mat-raised-button color="primary" (click)="removeImage()">Remove Image</button>
+                </div>
+                    @for (item of images.controls; track $index) {
+                <mat-form-field class="w-full flex">
+                    <mat-label>Image {{$index}}</mat-label>
+                    <input matInput placeholder="Product Images" type="text" [formControlName]="$index">
+                </mat-form-field>}
+                </div>
+                <button [disabled]="productForm.invalid" mat-raised-button color="primary" (click)="isEdit ? update() : add()">{{ isEdit ? "Update" : "Add" }}</button>
             </div>
         </div>
     </form>

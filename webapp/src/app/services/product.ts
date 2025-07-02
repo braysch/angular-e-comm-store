@@ -18,16 +18,12 @@ export class ProductService {
     return this.http.get<Product>(environment.apiUrl + '/product/' + id);
   }
 
-  addProduct(name: string) {
-    return this.http.post(environment.apiUrl + '/product', {
-      name: name,
-    });
+  addProduct(model: Product) {
+    return this.http.post(environment.apiUrl + '/product', model);
   }
 
-  updateProduct(id: string, name: string) {
-    return this.http.put(environment.apiUrl + '/product/' + id, {
-      name: name,
-    });
+  updateProduct(id: string, model: Product) {
+    return this.http.put(environment.apiUrl + '/product/' + id, model);
   }
 
   deleteProduct(id: string) {
