@@ -23,5 +23,16 @@ export class Customer {
     console.log("Getting categories...");
     return this.http.get<Category[]>(environment.apiUrl + '/customer/categories');
   }
+  
+  getProducts(
+    searchTerm: string,
+    categoryId: string,
+    page: number,
+    pageSize: number,
+    sortBy: string,
+    sortOrder: number,
+    brandId: string) {
+    return this.http.get<Product[]>(environment.apiUrl + `/customer/products?searchTerm=${searchTerm}&categoryId=${categoryId}$page=${page}&pageSize=${pageSize}&sortBy=${sortBy}&sortOder=${sortOrder}&brandId=${brandId}`);
+  }
 
 }

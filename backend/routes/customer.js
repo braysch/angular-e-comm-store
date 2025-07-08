@@ -1,21 +1,35 @@
 const express = require('express');
-const { getNewProudcts, getFeaturedProducts } = require('../handlers/product-handler');
+const { getNewProudcts, getFeaturedProducts, getProductForListing } = require('../handlers/product-handler');
 const { getCategories } = require('../handlers/category-handler');
 const router = express.Router();
 
-router.get('/home/new-products', async (req, res) => {
+router.get('/new-products', async (req, res) => {
     const proudcts = await getNewProudcts();
     res.send(proudcts);
 });
 
-router.get('/home/featured-products', async (req, res) => {
+router.get('/featured-products', async (req, res) => {
     const proudcts = await getFeaturedProducts();
     res.send(proudcts);
 });
 
 router.get('/categories', async (req, res) => {
-    const proudcts = await getCategories();
-    res.send(proudcts);
+    const categories = await getCategories();
+    res.send(categories);
+});
+
+router.get('/products', async (req, res) => {
+    const { searchTerm, categoryId, page, pageSize, sortBy, sortOrder, brandId } = req.params;
+    const products = await getProductForListing(
+        searchTerm,
+        categoryId,
+        page,
+        pageSize,
+        sortBy,
+        sortOrder,
+        brandId,
+    );
+    res.send(products);
 });
 
 module.exports = router;

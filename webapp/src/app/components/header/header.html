@@ -3,7 +3,7 @@
     <div class="flex py-4 justify-around items-center">
         <a routerLink="/" >MyStore</a>
         <div>
-            <input type="text" placeholder="Search for products" (keyup.enter)="onSearch($event)" class="min-w-[200px] bg-white text-gray-300 p-2">
+            <input [(ngModel)]="searchTerm" type="text" placeholder="Search for products" (keyup.enter)="onSearch($event)" class="min-w-[200px] bg-white text-gray-300 p-2">
             <button class="bg-blue-500 text-white p-2 ml-2">Search</button>
         </div>
         <div class="flex flex-col">
@@ -19,7 +19,7 @@
 @if (authService.isLoggedIn()) {
 <div class="mx-8 grid grid-cols-4 xl:grid-cols-12 gap-y-2 flex justify-center items-center font-bold text-sm">
         @for (category of categoryList; track $index) {
-            <div (click)="searchCategory(category._id!)" class="text-center">{{category.name}}</div>
+            <div (click)="searchCategory(category._id!)" class="cursor-pointer text-center">{{category.name}}</div>
         }
     </div> }
 </div>
