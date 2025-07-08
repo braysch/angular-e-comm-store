@@ -1,0 +1,8 @@
+<form [formGroup]="registerForm">
+<div class="p-8 flex flex-col gap-y-4">
+    <input formControlName="name" class="bg-gray-200 p-2 rounded-lg" type="text" placeholder="imie">
+    <input formControlName="email" class="bg-gray-200 p-2 rounded-lg" type="text" placeholder="email">
+    <input formControlName="password" class="bg-gray-200 p-2 rounded-lg" type="text" placeholder="halso">
+    <button [disabled]="registerForm.invalid" (click)="register()" class="bg-blue-900 text-white p-2 rounded-full">REGISTER</button>
+</div>
+</form>

@@ -1,0 +1,7 @@
+<form [formGroup]="loginForm">
+<div class="p-8 flex flex-col gap-y-4">
+    <input formControlName="email" class="bg-gray-200 p-2 rounded-lg" type="text" placeholder="email">
+    <input formControlName="password" class="bg-gray-200 p-2 rounded-lg" type="text" placeholder="halso">
+    <button [disabled]="loginForm.invalid" (click)="login()" class="bg-blue-900 text-white p-2 rounded-full">LOGIN</button>
+</div>
+</form>

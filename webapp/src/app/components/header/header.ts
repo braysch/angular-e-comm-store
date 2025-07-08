@@ -3,6 +3,8 @@ import { CategoryService } from '../../services/category';
 import { Category } from '../../types/category';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
+import { Auth } from '../../services/auth';
+import { Customer } from '../../services/customer';
 
 @Component({
   selector: 'app-header',
@@ -24,11 +26,18 @@ onSearch(e: any) {
   }
 }
 
-  categoryService = inject(CategoryService);
+logout() {
+  this.authService.logout();
+  this.router.navigateByUrl("/login");
+}
+
+  customerService = inject(Customer);
   categoryList:Category[] = [];
+  authService = inject(Auth);
   
   ngOnInit() {
-    this.categoryService.getCategories().subscribe((result: any) => {
+    console.log("AHOY");
+    this.customerService.getCategories().subscribe((result: any) => {
       this.categoryList = result;
     });
   }
