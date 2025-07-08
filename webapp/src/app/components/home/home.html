@@ -1,1 +1,15 @@
-<p>home works!</p>
+<div class="p-8">
+    
+  <div class="py-4 text-3xl">FEATURED PRODUCTS:</div>
+  <div class="flex gap-x-4">
+    @for (product of this.featuredProducts; track product) {
+        <app-product-card [product]='product'></app-product-card>
+    }
+  </div>
+  <div class="py-4 text-3xl">NEW PRODUCTS:</div>
+  <div class="flex gap-x-4">
+    @for (product of this.newProducts; track product) {
+        <app-product-card [product]='product'></app-product-card>
+    }
+  </div>
+</div>

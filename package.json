@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "cors": "^2.8.5",
-    "latest": "^0.2.0"
+    "latest": "^0.2.0",
+    "ngx-owl-carousel-o": "^20.0.0"
   }
 }

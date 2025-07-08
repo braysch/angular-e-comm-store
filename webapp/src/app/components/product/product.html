@@ -1,0 +1,13 @@
+<a href="/products/{{product._id}}" class="hover:scale-105 flex flex-col product-card bg-gray-300 w-[300px] overflow-hidden h-full p-2 rounded-lg shadow-md">
+  <div class="bg-white rounded-lg overflow-hidden object-cover">
+    <img [src]="product.images" alt="{{ product.name }}" class="w-full h-32 object-cover rounded-lg mb-4">
+  </div>
+  <div class="py-4">
+    <h3 class="font-bold">{{ product.name }}</h3>
+  <p class="text-sm">{{ product.shortDescription }}</p>
+</div>
+<div class="flex">
+    <p class="w-full font-medium">${{ product.price }}</p>
+  <button mat-raised-button class="bg-blue-900 text-white rounded-lg px-2 text-nowrap">Add to Cart</button>
+</div>
+</a>

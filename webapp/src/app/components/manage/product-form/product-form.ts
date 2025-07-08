@@ -9,11 +9,12 @@ import { CategoryService } from '../../../services/category';
 import { BrandService } from '../../../services/brand';
 import { Brand } from '../../../types/brand';
 import { Category } from '../../../types/category';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-product-form',
   standalone: true,
-  imports: [ReactiveFormsModule, FormsModule, MatInputModule, MatButtonModule, MatSelectModule],
+  imports: [ReactiveFormsModule, FormsModule, MatInputModule, MatButtonModule, MatSelectModule, MatCheckboxModule],
   templateUrl: './product-form.html',
   styleUrl: './product-form.css'
 })
@@ -30,6 +31,8 @@ export class ProductForm {
     images: this.formBuilder.array([]),
     categoryId: [null, [Validators.required]],
     brandId: [null, [Validators.required]],
+    isFeatured: [false],
+    isNew: [false]
   });
   productService = inject(ProductService);
   router = inject(Router);

@@ -6,6 +6,7 @@ const cors = require("cors");
 const categoryRouter = require("./routes/category");
 const brandRouter = require("./routes/brand");
 const productRouter = require("./routes/product");
+const customerRouter = require("./routes/customer");
 
 app.use(cors());
 app.use(express.json());
@@ -17,6 +18,7 @@ app.get("/",(req, res) => {
 app.use("/category", categoryRouter);
 app.use("/brand", brandRouter);
 app.use("/product", productRouter);
+app.use("/customer", customerRouter);
 
 async function connectDB() {
     mongoose.connect("mongodb://localhost:27017/ecommDB", {
